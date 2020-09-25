@@ -14,9 +14,11 @@ clear_images=false
 clear_action=false
 clear_root=false
 clear_logs=false
+do_update=false
 
 print_usage() {
   printf "Usage: 
+    -u Updates this script to the ltest version (must be run with Sudo. Cannto be combined with other flags)
     -a Deletes logged HttpRequestComponent Request/Response dump files
     -i Deletes stored image media data
     -r Deletes old files in the /root directory, including unused .zip and .tar files
@@ -30,8 +32,9 @@ print_usage() {
   "
 }
 
-while getopts ':adrliv' flag; do
+while getopts ':adrlivu' flag; do
 case "${flag}" in
+    u) do_update=true ;;
     a) clear_action=true ;;
     d) clear_docker=true ;;
     i) clear_images=true ;;
@@ -151,10 +154,11 @@ clearActionHttpRequestLogs() {
 update() {
     # only root can run the update because we need to do a chmod +x on it
     if [ "$EUID" -ne 0 ]
-        then echo "Please run as root"
+        then echo "Please run as root to update this script"
         exit
     fi
     
+    rm -f ~/ghcu.sh
     wget -P ~/ https://raw.githubusercontent.com/0xNF/ghcu/master/src/ghcu.sh
     chmod +x ~/ghcu.sh
     echo "Updated to latest version of ghcu"
@@ -176,6 +180,10 @@ finish() {
 
 main() {
     # Get Flags
+    if $do_update; then
+        update
+        exit
+    fi
     if $clear_root; then
         clearMiscFromRoot
     fi
