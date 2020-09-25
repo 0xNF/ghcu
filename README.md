@@ -12,6 +12,7 @@ These flags can be combined. For instance: `ghcu.sh -ardil`, or `ghcu.sh -a -r -
 
 For more details usage notes, `ghcu.sh -h` will print the help menu.
 
+# Downloading
 File can be downloaded directly onto the GHub computer with the following command:
 ```bash
 wget https://raw.githubusercontent.com/0xNF/ghcu/master/src/ghcu.sh
@@ -19,3 +20,8 @@ chmod +x ./ghcu.sh
 ```
 
 be sure to run the `chmod +x` command on it, otherwise it will not be executable.
+
+# Usage
+```bash
+./ghcu.sh -h
+```
