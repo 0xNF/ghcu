@@ -161,7 +161,7 @@ update() {
     rm -f ~/ghcu.sh
     wget -P ~/ https://raw.githubusercontent.com/0xNF/ghcu/master/src/ghcu.sh
     chmod +x ~/ghcu.sh
-    echo "Updated to latest version of ghcu"
+    echo "Updated to latest version of ghcu - hello"
 }
 
 bytes2mb() {
