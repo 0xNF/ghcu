@@ -148,6 +148,18 @@ clearActionHttpRequestLogs() {
     fi
 }
 
+update() {
+    # only root can run the update because we need to do a chmod +x on it
+    if [ "$EUID" -ne 0 ]
+        then echo "Please run as root"
+        exit
+    fi
+    
+    wget -P ~/ https://raw.githubusercontent.com/0xNF/ghcu/master/src/ghcu.sh
+    chmod +x ~/ghcu.sh
+    echo "Updated to latest version of ghcu"
+}
+
 bytes2mb() {
     f=$(($1/1024))
     f=$(($f/1024))
