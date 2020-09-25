@@ -131,7 +131,7 @@ clearSavedImages() {
 }
 
 clearActionHttpRequestLogs() {
-    ddir="/home/gravio/hubkitrepo/data/action/data/Engine.Components.Action.SendHttpRequestdump/"
+    ddir="/home/gravio/hubkitrepo/data/action/data/Engine.Components.Action.SendHttpRequestdump"
     echo "Clearing out action execution http request dumps located at $ddir..."
     if [[ -d "$ddir" ]]
     then
@@ -139,8 +139,8 @@ clearActionHttpRequestLogs() {
         filesDeleted=$(($filesDeleted + $del))
         size=`du -b $ddir | cut -f1 | head -n 1`
         spaceSaved=$(($spaceSaved + $size))
-        mv $ddir $ddir~ # move folder to temp folder because highly active components will write to the folder often enough to cause rm to fail
-        rm -rf $ddir~ # purposefully deleting the whole folder. Argument list may get too long otherwise.
+        mv $ddir ./delme # move folder to temp folder because highly active components will write to the folder often enough to cause rm to fail
+        rm -rf ./delme # purposefully deleting the whole folder. Argument list may get too long otherwise.
         b2mb=$(bytes2mb $size)
         echo -e "\tFinished clearing out media data directory - removed $b2mb MB and $del files" 
     else
