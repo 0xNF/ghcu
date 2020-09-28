@@ -89,7 +89,7 @@ clearMiscFromRoot() {
         del=`find $ddir/*.tar -type f | wc -l`
         filesDeleted=$(($filesDeleted + $del))
 
-        rm -f $ddir/coordinator-gravio-arm64.tar $ddir/hubkit-arm64.tar $ddir/redis.tar
+        rm -f $ddir/*.tar
 
         b2mb=$(bytes2mb $size)
         echo -e "\tFinished clearing out old root folder data - removed $b2mb MB and $del files"
